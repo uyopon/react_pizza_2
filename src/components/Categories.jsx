@@ -1,6 +1,6 @@
 import React from 'react'
 
-function Categories() {
+function Categories({items}) {
     return (
         <div className="categories">
             <ul>
