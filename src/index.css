@@ -331,7 +331,7 @@ a {
   margin-right: 8px
 }
 
-.sort_rotated {
+.sort__rotated {
   transform: rotate(180deg)
 }
 

@@ -1,28 +1,39 @@
 import React from 'react'
 
-function SortPopUp() {
-    const [visiblePopup, setVisiblePopup] = React.useState(false)
+function SortPopUp({items}) {
+
+    const [visiblePopup, setVisiblePopup] = React.useState(false) //скрыть/показать
+
+    const [activeItem, setActiveItem] = React.useState(0)//индект текущего элеиента
+
+    const onSelectItem=(value)=>{ //клик на элемент
+        setActiveItem(value) 
+        setVisiblePopup(false)    
+    }
+
+    const sortRef = React.useRef()
 
     const toggleVisiblePopup = () => {
         setVisiblePopup(!visiblePopup)
-
     }
 
-    const handleOutsideClick = (e)=>{
-     console.log(e)   
+    const handleOutsideClick = (e) => {
+        
+        if (!e.path.includes(sortRef.current)) { setVisiblePopup(false) }
     }
 
-    React.useEffect(() => 
-        { document.body.addEventListener('click', () => handleOutsideClick)
-           }
+    React.useEffect(() => {
+        document.body.addEventListener('click', handleOutsideClick)
+    }
         , [])
 
 
 
     return (
-        <div className="sort">
+        <div ref={sortRef} className="sort">
             <div className="sort__label">
-                <svg
+                <svg 
+                    className={visiblePopup? 'sort__rotated' : ''}
                     width="10"
                     height="6"
                     viewBox="0 0 10 6"
@@ -35,13 +46,14 @@ function SortPopUp() {
                     />
                 </svg>
                 <b>Сортировка по:</b>
-                <span onClick={() => toggleVisiblePopup()}>популярности</span>
+                <span onClick={() => toggleVisiblePopup()}>{items[activeItem]}</span>
             </div>
             {visiblePopup && <div className="sort__popup">
                 <ul>
-                    <li className="active">популярности</li>
-                    <li>цене</li>
-                    <li>алфавиту</li>
+                    
+                {items && items.map((name,index)=> <li  onClick={()=>onSelectItem(index)} className={activeItem===index?'active':''}
+                 key ={name}>{name}</li>)}
+
                 </ul>
             </div>}
         </div>
