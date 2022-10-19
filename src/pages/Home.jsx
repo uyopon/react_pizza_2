@@ -15,7 +15,8 @@ function Home({pizzas}) {
       </div>
       <h2 className="content__title">Все пиццы</h2>
       <div className="content__items">
-        <PizzaBlock />
+
+        {pizzas.map( (obj,index) => <PizzaBlock key={obj.id} obj={obj}/>)}
 
       </div>
     </div>
