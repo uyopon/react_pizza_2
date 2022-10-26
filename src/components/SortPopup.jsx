@@ -2,9 +2,13 @@ import React from 'react'
 
 function SortPopUp({items}) {
 
+    console.log(items)
+
     const [visiblePopup, setVisiblePopup] = React.useState(false) //скрыть/показать
 
     const [activeItem, setActiveItem] = React.useState(0)//индект текущего элеиента
+
+    const activeLabel = items[activeItem].name//////////////////////////////////////////////////////////wtf - что это ?
 
     const onSelectItem=(value)=>{ //клик на элемент
         setActiveItem(value) 
@@ -27,8 +31,6 @@ function SortPopUp({items}) {
     }
         , [])
 
-
-
     return (
         <div ref={sortRef} className="sort">
             <div className="sort__label">
@@ -46,13 +48,13 @@ function SortPopUp({items}) {
                     />
                 </svg>
                 <b>Сортировка по:</b>
-                <span onClick={() => toggleVisiblePopup()}>{items[activeItem]}</span>
+                <span onClick={() => toggleVisiblePopup()}>{items[activeItem].name}</span>
             </div>
             {visiblePopup && <div className="sort__popup">
                 <ul>
                     
-                {items && items.map((name,index)=> <li  onClick={()=>onSelectItem(index)} className={activeItem===index?'active':''}
-                 key ={name}>{name}</li>)}
+                {items && items.map((item,index)=> <li  onClick={()=>onSelectItem(index)} className={activeItem===index?'active':''}
+                 key ={item.type}>{item.name}</li>)}
 
                 </ul>
             </div>}

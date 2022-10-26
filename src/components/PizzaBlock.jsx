@@ -2,15 +2,15 @@ import React from 'react'
 import classNames from 'classnames'
 import PropTypes from 'prop-types'
 
-function PizzaBlock({obj}) {
+function PizzaBlock({ imageUrl, name, price, sizes, types,  }) {
 
   const typeNames = ['тонкое', 'традиционное']
   
   const avaliableSizes = [26, 30, 40]
 
-  const  [activeType , setActiveType] = React.useState(obj.types[0])
+  const  [activeType , setActiveType] = React.useState(types[0])
 
-  const  [activeSize , setactiveSize] = React.useState(obj.sizes[0])
+  const  [activeSize , setactiveSize] = React.useState(sizes[0])
 
   
 
@@ -26,15 +26,15 @@ function PizzaBlock({obj}) {
     <div className="pizza-block">
           <img
             className="pizza-block__image"
-            src={obj.imageUrl}
+            src={imageUrl}
             alt="Pizza"
           />
-          <h4 className="pizza-block__title">{obj.name}</h4>
+          <h4 className="pizza-block__title">{name}</h4>
           <div className="pizza-block__selector">
             <ul>
 
             {typeNames.map((type,index)=> <li key={index} 
-            className={classNames({'active': activeType===index, 'disabled': !obj.types.includes(index) })} 
+            className={classNames({'active': activeType===index, 'disabled': !types.includes(index) })} 
             onClick={()=>onSelectType(index)}
             >{type}</li>)}
 
@@ -44,7 +44,7 @@ function PizzaBlock({obj}) {
             </ul>
             <ul>
               {avaliableSizes.map((size,index)=><li key={index} 
-              className={classNames({'active': activeSize===size, 'disabled': !obj.sizes.includes(size)  })}
+              className={classNames({'active': activeSize===size, 'disabled': !sizes.includes(size)  })}
               onClick={()=>onSelectSize(size)}
               >{size} см.</li>)}
 
@@ -54,7 +54,7 @@ function PizzaBlock({obj}) {
             </ul>
           </div>
           <div className="pizza-block__bottom">
-            <div className="pizza-block__price">{obj.price} </div>
+            <div className="pizza-block__price">{price} </div>
             <div className="button button--outline button--add">
               <svg
                 width="12"
