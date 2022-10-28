@@ -2,13 +2,11 @@ import React from 'react'
 
 function SortPopUp({items}) {
 
-    console.log(items)
-
     const [visiblePopup, setVisiblePopup] = React.useState(false) //скрыть/показать
 
     const [activeItem, setActiveItem] = React.useState(0)//индект текущего элеиента
 
-    const activeLabel = items[activeItem].name//////////////////////////////////////////////////////////wtf - что это ?
+    // const activeLabel = items[activeItem].name//////////////////////////////////////////////////////////wtf - что это ? - сортировка по :
 
     const onSelectItem=(value)=>{ //клик на элемент
         setActiveItem(value) 

@@ -9,7 +9,7 @@ const pizzas = (state = initialState,action)=> {
         case 'SET_PIZZAS': 
 
             return { 
-                ...state, 
+                ...state,           //////оператор spread развертывает объект и достает все знчения изнутри . сам объект не меняется
                 items:action.payload,
                 isLoaded: true
 

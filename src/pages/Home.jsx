@@ -2,8 +2,15 @@ import React from 'react'
 import Categories from '../components/Categories'
 import SortPopup from '../components/SortPopup'
 import PizzaBlock from '../components/PizzaBlock'
+import { useSelector } from 'react-redux'
 
-function Home({pizzas}) {
+function Home() {
+
+  const {pizzas} = useSelector((state) => {///////////// оформить пдписку на хранилище (если state изменилось => useSeletor получает новые данные и делает ререндер)
+    return {
+      pizzas: state.pizzas.items
+    }
+  })
   
   return (
     <div className="container">
@@ -19,7 +26,7 @@ function Home({pizzas}) {
       <h2 className="content__title">Все пиццы</h2>
       <div className="content__items">
 
-        {pizzas.map( (obj,index) => <PizzaBlock key={obj.id} {...obj}/>)}
+        {pizzas && pizzas.map( (obj,index) => <PizzaBlock key={obj.id} {...obj}/>)}
 
       </div>
     </div>

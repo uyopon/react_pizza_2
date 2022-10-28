@@ -4,7 +4,6 @@ import Button from './Button'
 import { Link } from 'react-router-dom'
 
 function Header({ items }) {
-    console.log(items)
 
     return (
         <div className="header">
@@ -31,7 +30,7 @@ function Header({ items }) {
                 <div className="header__cart">
 
 
-                <Link to='/cart'>
+                    <Link to='/cart'>
                         <Button className='button--cart'>
                             {/* <a href="/cart.html" className="button button--cart"> */}
                             <span>520 ₽</span>
