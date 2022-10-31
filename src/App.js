@@ -13,7 +13,7 @@ function App() {
 
   React.useState(() => {
 
-    axios.get('http://localhost:3000/db.json').then(({ data }) => dispatch(setPizzas(data.pizzas)))
+    axios.get('http://localhost:3001/pizzas').then(({ data }) => dispatch(setPizzas(data)))
 
     // fetch('http://localhost:3000/db.json').then((resp)=>resp.json()).then((json)=>setPizzas(json.pizzas))
 
