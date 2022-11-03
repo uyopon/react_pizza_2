@@ -1,10 +1,19 @@
+import axios from "axios"
+
 export const setLoaded  = (payload) => {
     return (
         {type: 'SET_LOADED',payload}
     )
 }
 
+export const fetchPizzas = (category) =>(dispatch)=> { //fetch -  принести данные используют в контексте обращения к серверу
+    
+  
 
+    axios.get("http://localhost:3001/pizzas").then(({ data }) => {
+        dispatch(setPizzas(data))
+    })
+}
 
 export const setPizzas = (items) => {
     return (

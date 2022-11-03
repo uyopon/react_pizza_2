@@ -28,8 +28,9 @@ root.render(
 
 
 //z я
-// !
 //cd react_pizza_2
+// 
+//c
 //Z
 
 

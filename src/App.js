@@ -5,7 +5,8 @@ import Cart from './pages/Cart'
 import { Routes, Route } from 'react-router-dom';
 import axios from 'axios'
 import {  useDispatch } from 'react-redux' 
-import { setPizzas } from './redux/actions/pizzas'
+import { fetchPizzas } from './redux/actions/pizzas'
+
 
 function App() {
 
@@ -13,9 +14,12 @@ function App() {
 
   React.useState(() => {
 
-    axios.get('http://localhost:3001/pizzas').then(({ data }) => dispatch(setPizzas(data)))
+    // axios.get('http://localhost:3001/pizzas').then(({ data }) => dispatch(setPizzas(data)))
 
     // fetch('http://localhost:3000/db.json').then((resp)=>resp.json()).then((json)=>setPizzas(json.pizzas))
+
+    dispatch(fetchPizzas())
+
 
   }, [])
 
