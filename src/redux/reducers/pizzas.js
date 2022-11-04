@@ -4,12 +4,12 @@ const initialState = {
 }
 const pizzas = (state = initialState,action)=> {
 
-    
     switch (action.type) {
+
         case 'SET_PIZZAS': 
 
             return { 
-                ...state,           //////оператор spread развертывает объект и достает все знчения изнутри . сам объект не меняется
+                ...state,              //////оператор spread развертывает объект и достает все знчения изнутри . сам объект не меняется
                 items:action.payload,
                 isLoaded: true
 

@@ -3,8 +3,8 @@ import Header from './components/Header'
 import Home from './pages/Home';
 import Cart from './pages/Cart'
 import { Routes, Route } from 'react-router-dom';
-import axios from 'axios'
 import {  useDispatch } from 'react-redux' 
+
 import { fetchPizzas } from './redux/actions/pizzas'
 
 
@@ -12,16 +12,15 @@ function App() {
 
   const dispatch = useDispatch()///////////////////////////////////////////////////////////////////////
 
-  React.useState(() => {
+//   React.useEffect(() => {
 
-    // axios.get('http://localhost:3001/pizzas').then(({ data }) => dispatch(setPizzas(data)))
+//     // axios.get('http://localhost:3001/pizzas').then(({ data }) => dispatch(setPizzas(data)))
 
-    // fetch('http://localhost:3000/db.json').then((resp)=>resp.json()).then((json)=>setPizzas(json.pizzas))
+//     // fetch('http://localhost:3000/db.json').then((resp)=>resp.json()).then((json)=>setPizzas(json.pizzas))
 
-    dispatch(fetchPizzas())
+//     dispatch(fetchPizzas())
+// }, [])
 
-
-  }, [])
 
   return (
     <div className="wrapper">
