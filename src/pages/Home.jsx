@@ -16,9 +16,9 @@ const theItems =  [{ name: 'популярности', type: 'popular' },
 
 function Home() {
 
-  
-
   const pizzas = useSelector((state) => state.pizzas.items)/// оформить пдписку на хранилище (если state изменилось useSeletor получает новые данные и делает ререндер)
+
+  console.log(pizzas)
 
   const isLoaded = useSelector((state) => state.pizzas.isLoaded) /// оформить пдписку на хранилище (если state изменилось useSeletor получает новые данные и делает ререндер)
 
@@ -52,9 +52,9 @@ function Home() {
     <div className="container">
       <div className="content__top">
 
-        <Categories items={theCategories} onSelectCategory={onSelectCategory} />  
+        <Categories items={theCategories} onSelectCategory={onSelectCategory} activeItem={category} />  
 
-        <SortPopup items={theItems} />
+        <SortPopup  items={theItems} sortBy={sortBy} />  
 
       </div>
       <h2 className="content__title">Все пиццы</h2>

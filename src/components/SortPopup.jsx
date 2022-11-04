@@ -1,15 +1,14 @@
 import React from 'react'
 
-const SortPopUp = React.memo(function SortPopUp ({items}) {
+const SortPopUp = React.memo(function SortPopUp ({items, sortBy,}) {
+    //sortBy: 'popular',
 
     const [visiblePopup, setVisiblePopup] = React.useState(false) //скрыть/показать
 
-    const [activeItem, setActiveItem] = React.useState(0)//индект текущего элеиента
 
-    // const activeLabel = items[activeItem].name//////////////////////////////////////////////////////////wtf - что это ? - сортировка по :
 
     const onSelectItem=(value)=>{ //клик на элемент
-        setActiveItem(value) 
+        sortBy(value) 
         setVisiblePopup(false)    
     }
 
@@ -51,7 +50,7 @@ const SortPopUp = React.memo(function SortPopUp ({items}) {
             {visiblePopup && <div className="sort__popup">
                 <ul>
                     
-                {items && items.map((item,index)=> <li  onClick={()=>onSelectItem(index)} className={activeItem===index?'active':''}
+                {items && items.map((item,index)=> <li  onClick={()=>onSelectItem(index)} className={activeSortType===index?'active':''}
                  key ={item.type}>{item.name}</li>)}
 
                 </ul>

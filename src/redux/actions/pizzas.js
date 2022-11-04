@@ -8,7 +8,7 @@ export const setLoaded  = (payload) => {
 
 export const fetchPizzas = () =>(dispatch)=> { //fetch -  принести данные используют в контексте обращения к серверу
     
-    dispatch(setPizzas(false))
+    dispatch(setLoaded(false))
 
     axios.get("http://localhost:3001/pizzas").then(({ data }) => {
         dispatch(setPizzas(data))
