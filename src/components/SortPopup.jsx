@@ -1,30 +1,49 @@
 import React from 'react'
 
-const SortPopUp = React.memo(function SortPopUp ({items, sortBy,}) {
-    //sortBy: 'popular',
+const SortPopUp = React.memo(function SortPopUp ({items, sortBy,onSelectSortType }) {
 
-    const [visiblePopup, setVisiblePopup] = React.useState(false) //скрыть/показать
+    // console.log(typeof sortBy) ===== string
+
+//sortBy: 'popular', - из редакса
+
+// const theItems =  [{ name: 'популярности', type: 'popular' }, - из home
+// { name: 'цене', type: 'price' },
+// { name: 'алфавиту', type: 'alphabet' }]
+
+
+console.log(items.find((obj)=> obj.type ===sortBy).name)
+console.log(items)
+
+
+    const [visiblePopup, setVisiblePopup] = React.useState(false) //скрыть/показать true false
+
+    const activeLabel = items.find((obj)=> obj.type ===sortBy).name //current значение : { name: 'популярности', type: 'popular' }
+
+   
 
 
 
-    const onSelectItem=(value)=>{ //клик на элемент
-        sortBy(value) 
+    const onSelectItem=(type)=>{   //клик на элемент - 
+
+        onSelectSortType(type)
+        
         setVisiblePopup(false)    
     }
 
-    const sortRef = React.useRef()
+    const sortRef = React.useRef()  //создание ссылки
+
 
     const toggleVisiblePopup = () => {
-        setVisiblePopup(!visiblePopup)
+        setVisiblePopup(!visiblePopup) //скрыть/показать
     }
 
     const handleOutsideClick = (e) => {
         
-        if (!e.path.includes(sortRef.current)) { setVisiblePopup(false) }
+        if (!e.path.includes(sortRef.current)) { setVisiblePopup(false) } //outside click
     }
 
     React.useEffect(() => {
-        document.body.addEventListener('click', handleOutsideClick)
+        document.body.addEventListener('click', handleOutsideClick)  //создает слушатель клик на весь body запускает f handleOutsideClick
     }
         , [])
 
@@ -45,13 +64,13 @@ const SortPopUp = React.memo(function SortPopUp ({items, sortBy,}) {
                     />
                 </svg>
                 <b>Сортировка по:</b>
-                <span onClick={() => toggleVisiblePopup()}>{items[activeItem].name}</span>
+                <span onClick={() => toggleVisiblePopup()}>{activeLabel}</span>
             </div>
             {visiblePopup && <div className="sort__popup">
                 <ul>
                     
-                {items && items.map((item,index)=> <li  onClick={()=>onSelectItem(index)} className={activeSortType===index?'active':''}
-                 key ={item.type}>{item.name}</li>)}
+                {items && items.map((obj)=> <li  onClick={()=>onSelectItem(obj.type)} className={sortBy===obj.type?'active':''}
+                 key ={obj.type}>{obj.name}</li>)}
 
                 </ul>
             </div>}
