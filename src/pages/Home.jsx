@@ -8,11 +8,11 @@ import IsLOading from '../components/PizzaBlock/isLoading'
 import { fetchPizzas } from '../redux/actions/pizzas'
 
 
-const theCategories = ['Мясные', 'Вегетерианская', 'Гриль', 'Острые', 'Закрытые']
+const theCategories = ['Мясные', 'Вегетарианская', 'Гриль', 'Острые', 'Закрытые']
 
-const theItems =  [{ name: 'популярности', type: 'popular' },
-{ name: 'цене', type: 'price' },
-{ name: 'алфавиту', type: 'alphabet' }]
+const theItems =  [{ name: 'популярности', type: 'popular', order : 'desc' },
+{ name: 'цене', type: 'price', order : 'desc' },
+{ name: 'алфавиту', type: 'name', order : 'asc' }]
 
 function Home() {
 
@@ -35,10 +35,10 @@ function Home() {
 
     // fetch('http://localhost:3000/db.json').then((resp)=>resp.json()).then((json)=>setPizzas(json.pizzas))
 
-    dispatch(fetchPizzas())
+    dispatch(fetchPizzas(category, sortBy))
 
 
-  }, [category])
+  }, [category, sortBy])
 
 
   const onSelectCategory = React.useCallback(
@@ -59,14 +59,14 @@ function Home() {
 
         <Categories items={theCategories} onSelectCategory={onSelectCategory} activeItem={category} />  
 
-        <SortPopup  items={theItems} sortBy={sortBy} onSelectSortType ={onSelectSortType } />  
+        <SortPopup  items={theItems} sortBy={sortBy.type} onSelectSortType ={onSelectSortType } />  
 
       </div>
       <h2 className="content__title">Все пиццы</h2>
       <div className="content__items">
 
         {isLoaded ? pizzas.map((obj) => <PizzaBlock key={obj.id} {...obj}  />) :
-         Array(10).fill(0).map((_,index)=><IsLOading key={index}/>)}
+         Array(4).fill(0).map((_,index)=><IsLOading key={index}/>)}
 
     
       </div>
