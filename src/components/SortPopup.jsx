@@ -11,13 +11,19 @@ const SortPopUp = React.memo(function SortPopUp ({items, sortBy,onSelectSortType
 // { name: 'алфавиту', type: 'alphabet' }]
 
 
-console.log(items.find((obj)=> obj.type ===sortBy).name)
-console.log(items)
+// 
+
+
 
 
     const [visiblePopup, setVisiblePopup] = React.useState(false) //скрыть/показать true false
 
     const activeLabel = items.find((obj)=> obj.type ===sortBy).name //current значение : { name: 'популярности', type: 'popular' }
+
+
+    // console.log(items.find((obj)=> obj.type ===sortBy).name)
+
+    console.log(activeLabel )
 
    
 
