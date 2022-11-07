@@ -2,33 +2,20 @@ import React from 'react'
 
 const SortPopUp = React.memo(function SortPopUp ({items, sortBy,onSelectSortType }) {
 
-    // console.log(typeof sortBy) ===== string
+    // const theItems =  [{ name: 'популярности', type: 'popular', order : 'desc' },
+    // { name: 'цене', type: 'price', order : 'desc' },
+    // { name: 'алфавиту', type: 'name', order : 'asc' }]
 
-//sortBy: 'popular', - из редакса
-
-// const theItems =  [{ name: 'популярности', type: 'popular' }, - из home
-// { name: 'цене', type: 'price' },
-// { name: 'алфавиту', type: 'alphabet' }]
-
-
-// 
-
+    // sortBy:popular',
 
 
 
     const [visiblePopup, setVisiblePopup] = React.useState(false) //скрыть/показать true false
 
-    const activeLabel = items.find((obj)=> obj.type ===sortBy).name //current значение : { name: 'популярности', type: 'popular' }
+    const activeLabel = items.find((obj)=> obj.type ===sortBy).name //current значение : { name: 'популярности' }
 
-
-    // console.log(items.find((obj)=> obj.type ===sortBy).name)
-
-    console.log(activeLabel )
 
    
-
-
-
     const onSelectItem=(type)=>{   //клик на элемент - 
 
         onSelectSortType(type)
@@ -44,8 +31,10 @@ const SortPopUp = React.memo(function SortPopUp ({items, sortBy,onSelectSortType
     }
 
     const handleOutsideClick = (e) => {
-        
-        if (!e.path.includes(sortRef.current)) { setVisiblePopup(false) } //outside click
+        const path = e.path || (e.composedPath && e.composedPath());
+        if (!e.path.includes(sortRef.current)) {
+            setVisiblePopup(false);
+        }
     }
 
     React.useEffect(() => {

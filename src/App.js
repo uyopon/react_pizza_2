@@ -3,14 +3,12 @@ import Header from './components/Header'
 import Home from './pages/Home';
 import Cart from './pages/Cart'
 import { Routes, Route } from 'react-router-dom';
-import {  useDispatch } from 'react-redux' 
 
-import { fetchPizzas } from './redux/actions/pizzas'
 
 
 function App() {
 
-  const dispatch = useDispatch()///////////////////////////////////////////////////////////////////////
+  
 
 //   React.useEffect(() => {
 

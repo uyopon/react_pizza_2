@@ -10,9 +10,9 @@ import { fetchPizzas } from '../redux/actions/pizzas'
 
 const theCategories = ['Мясные', 'Вегетарианская', 'Гриль', 'Острые', 'Закрытые']
 
-const theItems =  [{ name: 'популярности', type: 'popular', order : 'desc' },
-{ name: 'цене', type: 'price', order : 'desc' },
-{ name: 'алфавиту', type: 'name', order : 'asc' }]
+const theItems = [{ name: 'популярности', type: 'popular', order: 'desc' },
+{ name: 'цене', type: 'price', order: 'desc' },
+{ name: 'алфавиту', type: 'name', order: 'asc' }]
 
 function Home() {
 
@@ -21,9 +21,9 @@ function Home() {
 
   const isLoaded = useSelector((state) => state.pizzas.isLoaded) /// оформить пдписку на хранилище (если state изменилось useSeletor получает новые данные и делает ререндер)
 
-  const {category,sortBy} = useSelector(({filters}) => filters) /// оформить пдписку на хранилище (если state изменилось useSeletor получает новые данные и делает ререндер)
+  const { category, sortBy } = useSelector(({ filters }) => filters) /// оформить пдписку на хранилище (если state изменилось useSeletor получает новые данные и делает ререндер)
 
-  
+
 
 
 
@@ -57,18 +57,18 @@ function Home() {
     <div className="container">
       <div className="content__top">
 
-        <Categories items={theCategories} onSelectCategory={onSelectCategory} activeItem={category} />  
+        <Categories items={theCategories} onSelectCategory={onSelectCategory} activeItem={category} />
 
-        <SortPopup  items={theItems} sortBy={sortBy.type} onSelectSortType ={onSelectSortType } />  
+        <SortPopup items={theItems} sortBy={sortBy.type} onSelectSortType={onSelectSortType} />
 
       </div>
       <h2 className="content__title">Все пиццы</h2>
       <div className="content__items">
 
-        {isLoaded ? pizzas.map((obj) => <PizzaBlock key={obj.id} {...obj}  />) :
-         Array(4).fill(0).map((_,index)=><IsLOading key={index}/>)}
+        {isLoaded ? pizzas.map((obj) => <PizzaBlock key={obj.id} {...obj} />) :
+          Array(4).fill(0).map((_, index) => <IsLOading key={index} />)}
 
-    
+
       </div>
     </div>
   )
