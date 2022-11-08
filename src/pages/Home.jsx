@@ -6,6 +6,9 @@ import { useSelector, useDispatch } from 'react-redux'
 import { setCategory, setSortBy } from '../redux/actions/filters'
 import IsLOading from '../components/PizzaBlock/isLoading'
 import { fetchPizzas } from '../redux/actions/pizzas'
+import { addPizzaToCart } from '../redux/actions/cart'
+
+
 
 
 const theCategories = ['Мясные', 'Вегетарианская', 'Гриль', 'Острые', 'Закрытые']
@@ -52,6 +55,12 @@ function Home() {
       dispatch(setSortBy(type))
     }, []
   )
+  const onClickAddPizza = React.useCallback(
+    (type) => {
+      dispatch(addPizzaToCart(type))
+    }, []
+  )
+  
 
   return (
     <div className="container">
@@ -65,7 +74,7 @@ function Home() {
       <h2 className="content__title">Все пиццы</h2>
       <div className="content__items">
 
-        {isLoaded ? pizzas.map((obj) => <PizzaBlock key={obj.id} onClickAddPizza={()=> alert('234')} {...obj} />) :
+        {isLoaded ? pizzas.map((obj) => <PizzaBlock key={obj.id} onClickAddPizza={onClickAddPizza} {...obj} />) :
           Array(4).fill(0).map((_, index) => <IsLOading key={index} />)}
 
 
