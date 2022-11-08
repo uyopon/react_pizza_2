@@ -65,7 +65,7 @@ function Home() {
       <h2 className="content__title">Все пиццы</h2>
       <div className="content__items">
 
-        {isLoaded ? pizzas.map((obj) => <PizzaBlock key={obj.id} {...obj} />) :
+        {isLoaded ? pizzas.map((obj) => <PizzaBlock key={obj.id} onClickAddPizza={()=> alert('234')} {...obj} />) :
           Array(4).fill(0).map((_, index) => <IsLOading key={index} />)}
 
 

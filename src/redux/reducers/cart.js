@@ -7,10 +7,10 @@ const cart = (state = initialState,action)=> {
 
     switch (action.type) {
 
-        case 'ADD_PIZZA_CART': 
+        case 'ADD_PIZZA_CART':      //[]  -динамический ключ в объекте
 
             return { 
-                ...state,                           //[]  -динамический ключ в объекте
+                ...state,                           
                 [action.payload.id]: [...state.items[action.payload.id],action.payload]
             }
                     

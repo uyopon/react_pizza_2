@@ -1,14 +1,21 @@
-import React, { Children } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
+import classNames from 'classnames';
 
-const Button = ({className, children})=>{
-   
+const Button = ({ onClick, className, outline, children }) => {
+  return (
+    <button
+      onClick={onClick}
+      className={classNames('button', className, {
+        'button--outline': outline,
+      })}>
+      {children}
+    </button>
+  );
+};
 
+Button.propTypes = {
+  onClick: PropTypes.func,
+};
 
-    return (
-        <button className= {`button ${className}`} > {children}</button>
-    )
-
-
-}
-
-export default Button
+export default Button;
