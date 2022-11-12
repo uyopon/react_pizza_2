@@ -4,7 +4,7 @@ import PropTypes from 'prop-types'
 import Button from '../Button'
 
 
-function PizzaBlock({id, imageUrl, name, price, sizes, types, onClickAddPizza }) {
+function PizzaBlock({id, imageUrl, name, price, sizes, types, onClickAddPizza,cartItems }) {
 
   
 
@@ -97,7 +97,7 @@ function PizzaBlock({id, imageUrl, name, price, sizes, types, onClickAddPizza })
             />
           </svg>
           <span>Добавить</span>
-          <i>2</i>
+          {cartItems &&<i>{cartItems}</i>}
         </Button>
       </div>
 

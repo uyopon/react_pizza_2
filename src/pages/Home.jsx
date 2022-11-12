@@ -19,10 +19,12 @@ const theItems = [{ name: 'популярности', type: 'popular', order: 'd
 
 function Home() {
 
-  const pizzas = useSelector((state) => state.pizzas.items)/// оформить пдписку на хранилище (если state изменилось useSeletor получает новые данные и делает ререндер)
+  const pizzas = useSelector(({pizzas}) => pizzas.items)/// оформить пдписку на хранилище (если state изменилось useSeletor получает новые данные и делает ререндер)
+
+  const cartItems = useSelector(({cart}) => cart.items) //= свойство id : массив с объектами пицц
 
 
-  const isLoaded = useSelector((state) => state.pizzas.isLoaded) /// оформить пдписку на хранилище (если state изменилось useSeletor получает новые данные и делает ререндер)
+  const isLoaded = useSelector(({pizzas}) => pizzas.isLoaded) /// оформить пдписку на хранилище (если state изменилось useSeletor получает новые данные и делает ререндер)
 
   const { category, sortBy } = useSelector(({ filters }) => filters) /// оформить пдписку на хранилище (если state изменилось useSeletor получает новые данные и делает ререндер)
 
@@ -74,7 +76,7 @@ function Home() {
       <h2 className="content__title">Все пиццы</h2>
       <div className="content__items">
 
-        {isLoaded ? pizzas.map((obj) => <PizzaBlock key={obj.id} onClickAddPizza={onClickAddPizza} {...obj} />) :
+        {isLoaded ? pizzas.map((obj) => <PizzaBlock key={obj.id} cartItems={cartItems[obj.id]&& cartItems[obj.id].length} onClickAddPizza={onClickAddPizza} {...obj} />) :
           Array(4).fill(0).map((_, index) => <IsLOading key={index} />)}
 
 
