@@ -1,22 +1,36 @@
 import React from 'react'
 import CartItem from '../components/CartItem'
-import {useSelector}from 'react-redux'
-
+import { useSelector, useDispatch } from 'react-redux'
+import { clearCart } from '../redux/actions/cart'
+import emptyCart from '../assets/img/empty-cart.png'
 
 function Cart() {
 
-const {totalPrice, totalCount, items,totalPriceById} = useSelector(({cart})=>cart)
+  const dispatch = useDispatch()
 
-const addedPizzas = Object.keys(items).map(key => items[key][0])// - на 1 id = 1 пицца 
+  const { totalPrice, totalCount, items, totalPriceById } = useSelector(({ cart }) => cart)
 
-console.log(addedPizzas)
+  const addedPizzas = Object.keys(items).map(key => items[key][0])// - на 1 id = 1 пицца 
+
+  const onClearCart = () => {
+
+    dispatch(clearCart())
+
+  }
+
+
+
 
 
   return (
 
     <div className="content">
       <div className="container container--cart">
-        <div className="cart">
+
+
+        {
+        totalCount ? 
+        <div className="cart"> 
           <div className="cart__top">
             <h2 className="content__title"><svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path d="M6.33333 16.3333C7.06971 16.3333 7.66667 15.7364 7.66667 15C7.66667 14.2636 7.06971 13.6667 6.33333 13.6667C5.59695 13.6667 5 14.2636 5 15C5 15.7364 5.59695 16.3333 6.33333 16.3333Z" stroke="white" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
@@ -32,14 +46,14 @@ console.log(addedPizzas)
                 <path d="M11.6666 9.16667V14.1667" stroke="#B6B6B6" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" />
               </svg>
 
-              <span>Очистить корзину</span>
+              <span onClick={() => onClearCart()}>Очистить корзину</span>
             </div>
           </div>
           <div className="content__items">
-            
-            
-           {addedPizzas.map((item,index) => <CartItem name= {item.name} size = {item.size} type = {item.type}
-          totalPriceById={totalPriceById[item.id]} totalCount={items[item.id].length}/>)}
+
+
+            {addedPizzas.map((obj, index) => <CartItem name={obj.name} size={obj.size} type={obj.type} key={obj.id}
+              totalPriceById={totalPriceById[obj.id]} totalCount={items[obj.id].length} />)}
             {/* <CartItem name= {'Сырный цыпленок'} size = {20} type = {'тонкое'}/> */}
 
           </div>
@@ -61,7 +75,28 @@ console.log(addedPizzas)
               </div>
             </div>
           </div>
+        
         </div>
+
+
+
+        : <div class="container container--cart">
+        <div class="cart cart--empty">
+          <h2>Корзина пустая <icon>😕</icon></h2>
+          <p>
+            Вероятней всего, вы не заказывали ещё пиццу.<br />
+            Для того, чтобы заказать пиццу, перейди на главную страницу.
+          </p>
+          <img src={emptyCart} alt="Empty cart" />
+          <a href="/" class="button button--black">
+            <span>Вернуться назад</span>
+          </a>
+        </div>
+      </div>
+      
+      }
+        
+        
       </div>
     </div>
 

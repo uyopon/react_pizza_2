@@ -2,34 +2,34 @@ const initialState = {
     items: {},
     totalPrice: 0,
     totalCount: 0,
-    totalPriceById:{}
+    totalPriceById: {}
 
 }
 const cart = (state = initialState, action) => {
 
     switch (action.type) {
 
-        case 'ADD_PIZZA_CART': {      
+        case 'ADD_PIZZA_CART': {
 
             const newItems = { //добавление пиццы к добавленным ранее id : [кол-во]
 
-                ...state.items, 
+                ...state.items,
                 [action.payload.id]: !state.items[action.payload.id] ? [action.payload] : //если нету action.payload.id
 
                     [...state.items[action.payload.id], action.payload],     //если есть action.payload.id (чтобы добавлть пиццы с одинаковым id)
             }
 
-            const newTotalPriceById ={
-                ...state. totalPriceById,
-                [action.payload.id]: !state. totalPriceById[action.payload.id]? action.payload.price :
-                state. totalPriceById[action.payload.id]+ action.payload.price
+            const newTotalPriceById = {
+                ...state.totalPriceById,
+                [action.payload.id]: !state.totalPriceById[action.payload.id] ? action.payload.price :
+                    state.totalPriceById[action.payload.id] + action.payload.price
 
-            } 
+            }
 
 
-            const allPizzas = [].concat.apply([],Object.values(newItems)) //newItems = items
+            const allPizzas = [].concat.apply([], Object.values(newItems)) //newItems = items
 
-            const totalPrice = allPizzas.reduce((sum,obj)=>obj.price+sum,0) // 0 - initial значение sum
+            const totalPrice = allPizzas.reduce((sum, obj) => obj.price + sum, 0) // 0 - initial значение sum
 
 
 
@@ -45,7 +45,10 @@ const cart = (state = initialState, action) => {
                 //The concat() method is used to merge two or more arrays.
 
             }
-        }               
+        }
+
+        case 'CLEAR_CART':
+            return { totalPrice: 0, totalCount: 0, items: {},  totalPriceById: {}};
 
 
 
