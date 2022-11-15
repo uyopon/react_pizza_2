@@ -3,6 +3,7 @@ import CartItem from '../components/CartItem'
 import { useSelector, useDispatch } from 'react-redux'
 import { clearCart } from '../redux/actions/cart'
 import emptyCart from '../assets/img/empty-cart.png'
+import { Link } from 'react-router-dom'
 
 function Cart() {
 
@@ -16,11 +17,9 @@ function Cart() {
 
     dispatch(clearCart())
 
+
+   
   }
-
-
-
-
 
   return (
 
@@ -53,8 +52,8 @@ function Cart() {
 
 
             {addedPizzas.map((obj, index) => <CartItem name={obj.name} size={obj.size} type={obj.type} key={obj.id}
-              totalPriceById={totalPriceById[obj.id]} totalCount={items[obj.id].length} />)}
-            {/* <CartItem name= {'Сырный цыпленок'} size = {20} type = {'тонкое'}/> */}
+              totalPriceById={totalPriceById[obj.id]} totalCount={items[obj.id].length} id = {obj.id} price= {obj.price} obj= {obj} />)}
+           
 
           </div>
           <div className="cart__bottom">
@@ -63,44 +62,38 @@ function Cart() {
               <span> Сумма заказа: <b>{totalPrice} ₽</b> </span>
             </div>
             <div className="cart__bottom-buttons">
-              <a href="/" className="button button--outline button--add go-back-btn">
-                <svg width="8" height="14" viewBox="0 0 8 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <Link to="/" className="button button--outline button--add go-back-btn">
+                {/* <svg width="8" height="14" viewBox="0 0 8 14" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <path d="M7 13L1 6.93015L6.86175 1" stroke="#D3D3D3" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-                </svg>
+                </svg> */}
 
                 <span>Вернуться назад</span>
-              </a>
+              </Link>
               <div className="button pay-btn">
                 <span>Оплатить сейчас</span>
               </div>
             </div>
           </div>
-        
         </div>
 
-
-
-        : <div class="container container--cart">
-        <div class="cart cart--empty">
-          <h2>Корзина пустая <icon>😕</icon></h2>
+        : <div className="container container--cart">
+        <div className="cart cart--empty">
+          <h2>Корзина пустая 😕</h2>
           <p>
             Вероятней всего, вы не заказывали ещё пиццу.<br />
             Для того, чтобы заказать пиццу, перейди на главную страницу.
           </p>
           <img src={emptyCart} alt="Empty cart" />
-          <a href="/" class="button button--black">
+          <Link to="/" className="button button--black">
             <span>Вернуться назад</span>
-          </a>
+          </Link>
         </div>
       </div>
       
       }
         
-        
       </div>
     </div>
-
-
   )
 }
 

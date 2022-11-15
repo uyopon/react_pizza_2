@@ -3,8 +3,8 @@ export const addPizzaToCart = (pizzaObj) => ({
     payload: pizzaObj,
   });
   
-  export const clearCart = () => ({
-    type: 'CLEAR_CART',
+  export const clearCart = () => ({  // все пиццы
+    type: 'CLEAR_CART',    
   });
   
   export const removeCartItem = (id) => ({
@@ -12,12 +12,12 @@ export const addPizzaToCart = (pizzaObj) => ({
     payload: id,
   });
   
-  export const plusCartItem = (id) => ({
+  export const plusCartItem = (id,obj) => ({
     type: 'PLUS_CART_ITEM',
-    payload: id,
+    payload: {id,obj}
   });
   
   export const minusCartItem = (id) => ({
     type: 'MINUS_CART_ITEM',
-    payload: id,
+    payload: id
   });
